@@ -1,10 +1,10 @@
-import { Listener, OrderCreatedEvent, Subjects } from "@wzhticketing/common";
 import { Message } from "node-nats-streaming";
+import { Listener, OrderCreatedEvent, Subjects } from "@wzhticketing/common";
 import { queueGroupName } from "./queue-group-name";
 import { Order } from "../../models/order";
 
 export class OrderCreatedListener extends Listener<OrderCreatedEvent> {
-  readonly subject = Subjects.OrderCreated;
+  subject: Subjects.OrderCreated = Subjects.OrderCreated;
   queueGroupName = queueGroupName;
 
   async onMessage(data: OrderCreatedEvent["data"], msg: Message) {
@@ -15,10 +15,8 @@ export class OrderCreatedListener extends Listener<OrderCreatedEvent> {
       userId: data.userId,
       version: data.version,
     });
-
     await order.save();
 
-    // ack the message
     msg.ack();
   }
 }

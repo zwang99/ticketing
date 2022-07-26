@@ -41,12 +41,10 @@ router.post(
       amount: order.price * 100,
       source: token,
     });
-
     const payment = Payment.build({
       orderId,
       stripeId: charge.id,
     });
-
     await payment.save();
     new PaymentCreatedPublisher(natsWrapper.client).publish({
       id: payment.id,

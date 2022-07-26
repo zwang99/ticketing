@@ -1,6 +1,6 @@
-import { OrderStatus } from "@wzhticketing/common";
 import mongoose from "mongoose";
 import { updateIfCurrentPlugin } from "mongoose-update-if-current";
+import { OrderStatus } from "@wzhticketing/common";
 
 interface OrderAttrs {
   id: string;
