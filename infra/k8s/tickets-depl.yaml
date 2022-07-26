@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: tickets
-          image: gcr.io/ticketing-357406/tickets
+          image: wzhcqc/tickets
           env:
             - name: NATS_CLIENT_ID
               valueFrom:
